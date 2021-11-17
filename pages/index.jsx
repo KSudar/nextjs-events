@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import EventList from '../components/events/EventList';
 import { getFeaturedEvents } from '../helpers/Apiutil';
+import NewsletterRegistration from './../components/input/NewsletterRegistration';
 
 function HomePage({ featuredEvents }) {
 	return (
@@ -14,6 +15,7 @@ function HomePage({ featuredEvents }) {
 					content='Find a lot of great events that allow you to evolve'
 				/>
 			</Head>
+			<NewsletterRegistration />
 			<EventList events={featuredEvents} />
 		</div>
 	);

@@ -5,6 +5,7 @@ import EventContent from '../../components/eventDetail/EventContent';
 import ErrorAlert from '../../components/ui/ErrorAlert';
 import Button from './../../components/ui/Button';
 import Head from 'next/head';
+import Comments from './../../components/input/Comments';
 
 export default function PreviewEventPage({ event: eventProp }) {
 	const event = eventProp;
@@ -33,6 +34,7 @@ export default function PreviewEventPage({ event: eventProp }) {
 					<EventContent>
 						<p>{event.description}</p>
 					</EventContent>
+					<Comments eventId={event.id} />
 				</>
 			) : (
 				<div className='center'>
