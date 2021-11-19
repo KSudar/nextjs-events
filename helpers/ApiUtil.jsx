@@ -1,11 +1,21 @@
 import { filterEvents, objectToArrayById } from './Utils';
 
-const getAllEvents = async () => {
-	const response = await fetch(
-		'https://reactjs-course-events-default-rtdb.europe-west1.firebasedatabase.app/events.json'
-	);
+const getAllData = async (apiUrl) => {
+	const response = await fetch(apiUrl);
 	const data = await response.json();
 	return objectToArrayById(data);
+};
+
+const getAllEvents = async () => {
+	return await getAllData(
+		'https://reactjs-course-events-default-rtdb.europe-west1.firebasedatabase.app/events.json'
+	);
+};
+
+const getAllComments = async () => {
+	return await getAllData(
+		'https://reactjs-course-events-default-rtdb.europe-west1.firebasedatabase.app/comments.json'
+	);
 };
 
 const getFeaturedEvents = async () => {
@@ -37,7 +47,9 @@ const getFeaturedEventsIds = async () => {
 };
 
 export {
+	getAllData,
 	getAllEvents,
+	getAllComments,
 	getFeaturedEvents,
 	getFilteredEvents,
 	getEventById,

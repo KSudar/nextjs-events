@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import EventList from '../../components/events/EventList';
 import EventsSearch from '../../components/events/EventsSearch';
 import { useEffect, useState } from 'react';
-import { getAllEvents } from '../../helpers/Apiutil';
+import { getAllEvents } from '../../helpers/ApiUtil';
 import Head from 'next/head';
 
 function EventsPage({ allEvents: allEventsProps }) {

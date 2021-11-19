@@ -1,8 +1,36 @@
+import { useRef, useContext } from 'react';
+import NotificationContext from '../../store/NotificationContext';
 import styles from './NewsletterRegistration.module.css';
 
 function NewsletterRegistration() {
-	function registrationHandler(event) {
+	const emailRef = useRef();
+	const notificationCtx = useContext(NotificationContext);
+
+	async function registrationHandler(event) {
 		event.preventDefault();
+		notificationCtx.showNotification({
+			title: 'Signing up...',
+			message: 'Registering for newsletter',
+			status: 'pending',
+		});
+		const email = emailRef.current.value;
+		try {
+			await fetch(`/api/newsletter/add`, {
+				method: 'POST',
+				body: JSON.stringify(email),
+			});
+			notificationCtx.showNotification({
+				title: 'Signing up success',
+				message: `You've signed up for newsletter`,
+				status: 'success',
+			});
+		} catch (error) {
+			notificationCtx.showNotification({
+				title: 'Error',
+				message: error.message || 'Signing up failed!',
+				status: 'error',
+			});
+		}
 
 		// fetch user input (state or refs)
 		// optional: validate input
@@ -19,6 +47,7 @@ function NewsletterRegistration() {
 						id='email'
 						placeholder='Your email'
 						aria-label='Your email'
+						ref={emailRef}
 					/>
 					<button>Register</button>
 				</div>

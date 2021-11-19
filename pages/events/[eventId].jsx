@@ -1,4 +1,4 @@
-import { getEventById, getFeaturedEventsIds } from '../../helpers/Apiutil';
+import { getEventById, getFeaturedEventsIds } from '../../helpers/ApiUtil';
 import EventSummary from '../../components/eventDetail/EventSummary';
 import EventLogistics from '../../components/eventDetail/EventLogistics';
 import EventContent from '../../components/eventDetail/EventContent';
@@ -50,7 +50,6 @@ export default function PreviewEventPage({ event: eventProp }) {
 
 export async function getStaticProps(context) {
 	const eventId = context.params.eventId;
-	console.log('EVENT ID ', eventId);
 	const event = await getEventById(eventId);
 	const props = { event };
 	return { props, revalidate: 30 };

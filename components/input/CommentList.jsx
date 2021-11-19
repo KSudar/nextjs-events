@@ -1,21 +1,23 @@
 import styles from './CommentList.module.css';
 
-function CommentList() {
+function CommentList({ comments }) {
+	if (!comments || !comments.length) {
+		return <p>No comments to display!</p>;
+	}
 	return (
 		<ul className={styles.comments}>
 			{/* Render list of comments - fetched from API */}
-			<li>
-				<p>My comment is amazing!</p>
-				<div>
-					By <address>Maximilian</address>
-				</div>
-			</li>
-			<li>
-				<p>My comment is amazing!</p>
-				<div>
-					By <address>Maximilian</address>
-				</div>
-			</li>
+			{comments.map((comment) => (
+				<li key={comment.id}>
+					<p>{comment.commentText}</p>
+					<div>
+						<div>
+							<address>{comment.createdOn}</address>
+						</div>
+						By <address>{comment.commentOwner}</address>
+					</div>
+				</li>
+			))}
 		</ul>
 	);
 }

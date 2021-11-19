@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import EventList from '../components/events/EventList';
-import { getFeaturedEvents } from '../helpers/Apiutil';
+import { getFeaturedEvents } from '../helpers/ApiUtil';
 import NewsletterRegistration from './../components/input/NewsletterRegistration';
 
 function HomePage({ featuredEvents }) {

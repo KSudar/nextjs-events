@@ -1,4 +1,4 @@
-import { getFilteredEvents } from '../../helpers/Apiutil';
+import { getFilteredEvents } from '../../helpers/ApiUtil';
 import EventList from './../../components/events/EventList';
 import ResultsTitle from './../../components/events/ResultsTitle';
 import Button from './../../components/ui/Button';
