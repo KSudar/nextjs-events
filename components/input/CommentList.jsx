@@ -1,4 +1,4 @@
-import styles from './CommentList.module.css';
+import styles from './CommentList.module.scss';
 
 function CommentList({ comments }) {
 	if (!comments || !comments.length) {

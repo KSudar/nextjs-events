@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import styles from './EventsSearch.module.css';
+import styles from './EventsSearch.module.scss';
 import Button from './../ui/Button';
 function EventsSearch({ onSearch }) {
 	const yearRef = useRef();

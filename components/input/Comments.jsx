@@ -1,21 +1,18 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useContext } from 'react';
 import CommentList from './CommentList';
 import NewComment from './NewComment';
-import styles from './Comments.module.css';
-import { getAllComments } from '../../helpers/ApiUtil';
+import styles from './Comments.module.scss';
+import NotificationContext from '../../store/NotificationContext';
 
-function Comments({ eventId, context }) {
+function Comments({ eventId }) {
 	const [showComments, setShowComments] = useState(false);
 	const [commentsList, setCommentsList] = useState([]);
-
-	console.log('CONTEXT ', context);
+	const notificationCtx = useContext(NotificationContext);
 
 	useEffect(() => {
 		(async () => {
 			const response = await fetch(`/api/comments/${eventId}`);
 			const { data } = await response.json();
-			console.log('DATA ', data);
 			setCommentsList(
 				data.sort((commentA, commentB) =>
 					commentA.createdOn < commentB.createdOn ? 1 : -1
@@ -30,6 +27,11 @@ function Comments({ eventId, context }) {
 
 	async function addCommentHandler({ ownerEmail, commentOwner, commentText }) {
 		// send data to API
+		notificationCtx.showNotification({
+			title: 'Commenting...',
+			message: 'Adding a comment.',
+			status: 'pending',
+		});
 		const comment = {
 			eventId: eventId,
 			ownerEmail,
@@ -44,12 +46,29 @@ function Comments({ eventId, context }) {
 			}),
 		};
 
-		const response = await fetch(`/api/comments/create`, {
-			method: 'POST',
-			body: JSON.stringify(comment),
-		});
-		const { commentId } = await response.json();
-		setCommentsList([{ id: commentId, ...comment }, ...commentsList]);
+		try {
+			const response = await fetch(`/api/comments/create`, {
+				method: 'POST',
+				body: JSON.stringify(comment),
+			});
+			if (!response.ok) {
+				throw response;
+			}
+			const { commentId } = await response.json();
+			setCommentsList([{ id: commentId, ...comment }, ...commentsList]);
+
+			notificationCtx.showNotification({
+				title: 'Success',
+				message: `Comment was added`,
+				status: 'success',
+			});
+		} catch (error) {
+			notificationCtx.showNotification({
+				title: 'Error',
+				message: error.message || 'Adding comment failed!',
+				status: 'error',
+			});
+		}
 	}
 
 	return (

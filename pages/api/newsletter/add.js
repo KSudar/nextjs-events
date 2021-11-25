@@ -1,5 +1,6 @@
 async function handler(req, res) {
 	try {
+		console.log('OVDJE');
 		const { method, body } = req;
 		const response = await fetch(
 			'https://reactjs-course-events-default-rtdb.europe-west1.firebasedatabase.app/newsletter.json',
@@ -11,14 +12,17 @@ async function handler(req, res) {
 				},
 			}
 		);
-		res.status(201).json({
-			message: 'Success!',
+
+		if (!response.ok) {
+			throw response;
+		}
+		res.status(response.status).json({
+			message: response.statusText,
 			email: JSON.parse(body),
 		});
 	} catch (error) {
-		res.status(500).json({
+		res.status(error.status).json({
 			...error,
-			message: 'Internal server error',
 		});
 	}
 }

@@ -1,4 +1,4 @@
-import styles from './LogisticsItem.module.css';
+import styles from './LogisticsItem.module.scss';
 
 function LogisticsItem({ icon: Icon, children }) {
 	return (

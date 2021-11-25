@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import styles from './NewComment.module.css';
+import styles from './NewComment.module.scss';
 
 function NewComment({ onAddComment }) {
 	const [isInvalid, setIsInvalid] = useState(false);
@@ -54,7 +54,7 @@ function NewComment({ onAddComment }) {
 				<textarea id='comment' rows='5' ref={commentTextRef}></textarea>
 			</div>
 			{isInvalid && <p>Please enter a valid email address and comment!</p>}
-			<button>Submit</button>
+			<button className={styles.commentSubmit}>Submit</button>
 		</form>
 	);
 }

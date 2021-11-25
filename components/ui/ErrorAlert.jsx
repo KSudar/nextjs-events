@@ -1,4 +1,4 @@
-import styles from './ErrorAlert.module.css';
+import styles from './ErrorAlert.module.scss';
 
 function ErrorAlert({ children }) {
 	return <div className={styles.alert}>{children}</div>;

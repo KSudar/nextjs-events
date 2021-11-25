@@ -2,7 +2,7 @@ import Image from 'next/image';
 import AddressIcon from '../icons/AddressIcon';
 import DateIcon from '../icons/DateIcon';
 import LogisticsItem from './LogisticsItem';
-import styles from './EventLogistics.module.css';
+import styles from './EventLogistics.module.scss';
 
 function EventLogistics({ event }) {
 	const humanReadableDate = new Date(event.date).toLocaleDateString('hr-HR', {

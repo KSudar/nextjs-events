@@ -1,5 +1,5 @@
 import EventItem from './EventItem';
-import styles from './EventList.module.css';
+import styles from './EventList.module.scss';
 function EventList({ events }) {
 	return (
 		<ul className={styles.list}>

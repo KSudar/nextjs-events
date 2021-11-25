@@ -1,6 +1,6 @@
 import { useRef, useContext } from 'react';
 import NotificationContext from '../../store/NotificationContext';
-import styles from './NewsletterRegistration.module.css';
+import styles from './NewsletterRegistration.module.scss';
 
 function NewsletterRegistration() {
 	const emailRef = useRef();
@@ -15,10 +15,13 @@ function NewsletterRegistration() {
 		});
 		const email = emailRef.current.value;
 		try {
-			await fetch(`/api/newsletter/add`, {
+			const response = await fetch(`/api/newsletter/add`, {
 				method: 'POST',
 				body: JSON.stringify(email),
 			});
+			if (!response.ok) {
+				throw response;
+			}
 			notificationCtx.showNotification({
 				title: 'Signing up success',
 				message: `You've signed up for newsletter`,

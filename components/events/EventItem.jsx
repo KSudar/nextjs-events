@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Button from '../ui/Button';
-import styles from './EventItem.module.css';
+import styles from './EventItem.module.scss';
 import DateIcon from '../icons/DateIcon';
 import AddressIcon from '../icons/AddressIcon';
 import ArrowRightIcon from '../icons/ArrowRightIcon';

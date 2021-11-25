@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from './MainHeader.module.css';
+import styles from './MainHeader.module.scss';
 function MainHeader() {
 	return (
 		<header className={styles.header}>

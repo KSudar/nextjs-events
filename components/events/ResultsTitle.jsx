@@ -1,5 +1,5 @@
 import Button from '../ui/Button';
-import styles from './ResultsTitle.module.css';
+import styles from './ResultsTitle.module.scss';
 
 function ResultsTitle({ date }) {
 	const humanReadableDate = new Date(date).toLocaleDateString('hr-HR', {

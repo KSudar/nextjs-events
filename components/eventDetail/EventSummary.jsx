@@ -1,4 +1,4 @@
-import styles from './EventSummary.module.css';
+import styles from './EventSummary.module.scss';
 
 function EventSummary({ title }) {
 	return (
